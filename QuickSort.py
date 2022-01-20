@@ -2,6 +2,7 @@
 # selects pivot element from array and partitions elements according to whether they are greater or less than the pivot element
 # sub-arrays are then sorted recursively
 
+import math
 # pivot meets following 3 conditions after sorting
     # correct position in final, sorted array
     # items to left are smaller
@@ -21,7 +22,13 @@
     # if (low < high)
         #  pivot_index = partition (array, low, high)
         # quickSort (array, low, pivot_index - 1)
-        # quickSort (array, pivot_index + 1, high)
+        # quickSort (array, pivot_index +
+
+def quickSort(array, low, high):
+    if (low < high):
+        pivotIndex = partition(array, low, high)
+        quickSort(array, low, pivotIndex -1)
+        quickSort(array, pivotIndex + 1, high)
 
 # same params as quicksort
 # selects pivot as middle element
@@ -40,5 +47,21 @@
         # return j
 
     # swamp array[i] with array[j]
+
+def partition(array, low, high):
+    pivot = array[math.floor(((high + low) / 2))]
+    i = low - 1
+    j = high + 1
+
+    while array[i] < pivot:
+        i += 1
+
+    while array[j] > pivot:
+        j -= 1
+
+    if i >= j:
+        return j
+
+    array[i], array[j] = array[j], array[i]
 
 
